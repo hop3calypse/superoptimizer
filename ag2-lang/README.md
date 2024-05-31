@@ -6,7 +6,7 @@
 Each program has a total of 8 registers, each containing an 8-bit integer (also called a `char`, for my fellow C programmers). All values are initialized at 0.\
 A line can only contain one instruction. If you want to add more code, add more lines.
 
-You can write in **AG2** straight away using the `.at` file extension.
+You can write in AG2 straight away using the `.at` file extension.
 
 The purpose of an AG2 program is to execute each of its instructions, to then dump its memory in this format:\
 ```v
