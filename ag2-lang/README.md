@@ -8,7 +8,7 @@ A line can only contain one instruction. If you want to add more code, add more 
 
 You can write in AG2 straight away using the `.at` file extension.
 
-The purpose of an AG2 program is to execute each of its instructions, to then dump its memory in this format:\
+The purpose of an AG2 program is to execute each of its instructions, to then dump its memory in this format:
 ```v
 [ reg0, reg1, reg2, reg3, reg4, reg5, reg6, reg7 ]
 ```
@@ -38,7 +38,7 @@ The purpose of an AG2 program is to execute each of its instructions, to then du
 
 ## Example
 
-- Source code:
+Source code:
 ```cpp
 LOAD 2
 XOR 0 3
@@ -47,7 +47,7 @@ INC 3
 CMEM 6
 XOR 6 3
 ```
-- Output:
+Output:
 ```cpp
 [ 2, 0, 0, 3, 2, 0, 5, 0 ]
 ```
