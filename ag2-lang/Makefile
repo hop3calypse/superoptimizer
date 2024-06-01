@@ -1,15 +1,17 @@
 TARGET = ag2
 
-SRC = main.c execute.c instructions.c
+SRC = src/main.c src/execute.c src/instructions.c
 
 OBJ = $(SRC:.c=.o)
 
 CC = gcc
 
+INCLUDE = -Isrc/
+
 CFLAGS = -Wall -Werror
 
 all: $(OBJ)
-	$(CC) -o $(TARGET) $(OBJ) $(CFLAGS)
+	$(CC) -o $(TARGET) $(OBJ) $(CFLAGS) $(INCLUDE)
 
 clean:
 	$(RM) $(OBJ)
