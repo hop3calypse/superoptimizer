@@ -1,6 +1,6 @@
 TARGET = ag2
 
-SRC = main.c
+SRC = main.c execute.c instructions.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -19,4 +19,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+debug: CFLAGS += -g
+debug: re
+
+.PHONY: all clean fclean re debug

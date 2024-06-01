@@ -6,7 +6,7 @@
 Each program has a total of 8 registers, each containing an 8-bit integer (also called a `char`, for my fellow C programmers). All values are initialized at 0.\
 A line can only contain one instruction. If you want to add more code, add more lines.
 
-You can write in AG2 straight away using the `.at` file extension, and then compile your script with the `ag2` binary (learn how to build it in the [compiler section](#compile)).
+You can write in AG2 straight away using the `.at` file extension, and then compile your script with the `ag2` binary (learn how to build it in the [compiler section](#compiler)).
 
 The purpose of an AG2 program is to execute each of its instructions, to then dump its memory in this format:
 ```v
@@ -19,11 +19,11 @@ The purpose of an AG2 program is to execute each of its instructions, to then du
 >   - Register overflow error handling
 >   - Add more cheese
 >   - Control flow instructions (screw the superoptimizer)
+>   - Dynamic argument typings
 
 ## Instructions
 * `val` - Clear value. 5 means the number 5.
 * `mem` - Index of one of the program's register. 5 means the 4th register (it starts at 0).
-* A parameter can have multiple types. For example, `mem|val` means the parameter can be either a `mem` or a `val`. In the code, you have to precise which one you're reffering to: if you want the value 63, write `v63`. If you want the register 3, write `r3`.
 
 | Hex value | Instruction usage | Description |
 |---:|:---|:---|
@@ -31,23 +31,17 @@ The purpose of an AG2 program is to execute each of its instructions, to then du
 | 0x02 | `SWAP mem mem` | Swaps the values of the two memory locations. |
 | 0x03 | `CMEM mem` | Counts the number of memory blocks that are empty, and stocks that value at the memory location. |
 | 0x04 | `INC mem` | Increments the value at the memory location. |
-| 0x05 | `XOR mem mem\|val` | Performs a bitwise XOR operation on the values and stores the result in the first given memory location. |
+| 0x05 | `XOR mem mem` | Performs a bitwise XOR operation on the memory blocks' values and stores the result in the first memory location. |
 
 > [!NOTE]
 > If you haven't guessed it yet, AG2 is a deterministic programming language. There is no chance or random involved: what you write is what's happening.
 
-## Compiler <a name="compile"></a>
+## Compiler <a name="compiler"></a>
 Here is a step-by-step little guide on how to use the `ag2` compiler.
 
 * After cloning the repository, go in the `ag2-lang/` folder.
 * Execute the `make` command.
-* You now have the `ag2` binary! Try out the `--help` flag to learn more on its usage:
-```
-Usage: ./ag2 file
-Compiles an AG2 file (.at) in the current directory.
-
-Find documentation in the AG2-lang repository.
-```
+* You now have the `ag2` binary! Try out the `--help` flag to learn more on its usage.
 
 > *In the future...*
 >   - Binary decompiling support (`-d` flag)
