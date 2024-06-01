@@ -6,7 +6,7 @@
 Each program has a total of 8 registers, each containing an 8-bit integer (also called a `char`, for my fellow C programmers). All values are initialized at 0.\
 A line can only contain one instruction. If you want to add more code, add more lines.
 
-You can write in AG2 straight away using the `.at` file extension.
+You can write in AG2 straight away using the `.at` file extension, and then compile your script with the `ag2` binary (learn how to build it in the [compiler section](#compile)).
 
 The purpose of an AG2 program is to execute each of its instructions, to then dump its memory in this format:
 ```v
@@ -35,6 +35,24 @@ The purpose of an AG2 program is to execute each of its instructions, to then du
 
 > [!NOTE]
 > If you haven't guessed it yet, AG2 is a deterministic programming language. There is no chance or random involved: what you write is what's happening.
+
+## Compiler <a name="compile"></a>
+Here is a step-by-step little guide on how to use the `ag2` compiler.
+
+* After cloning the repository, go in the `ag2-lang/` folder.
+* Execute the `make` command.
+* You now have the `ag2` binary! Try out the `--help` flag to learn more on its usage:
+```
+Usage: ./ag2 file
+Compiles an AG2 file (.at) in the current directory.
+
+Find documentation in the AG2-lang repository.
+```
+
+> *In the future...*
+>   - Binary decompiling support (`-d` flag)
+>   - Compilation warnings and suggestions
+>   - More error handling
 
 ## Example
 
