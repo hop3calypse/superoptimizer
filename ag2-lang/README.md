@@ -23,7 +23,7 @@ The purpose of an AG2 program is to execute each of its instructions, to then du
 ## Instructions
 * `val` - Clear value. 5 means the number 5.
 * `mem` - Index of one of the program's register. 5 means the 4th register (it starts at 0).
-* A parameter can have multiple types. For example, `mem|val` means the parameter can be either a `mem` or a `val`. Types are always sorted in alphabetical order.
+* A parameter can have multiple types. For example, `mem|val` means the parameter can be either a `mem` or a `val`. In the code, you have to precise which one you're reffering to: if you want the value 63, write `v63`. If you want the register 3, write `r3`.
 
 | Hex value | Instruction usage | Description |
 |---:|:---|:---|
