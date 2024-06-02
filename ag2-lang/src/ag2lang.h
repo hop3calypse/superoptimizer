@@ -11,6 +11,10 @@
     #define LINK_AG2_DOCS "https://github.com/hugo-hamet/superoptimizer/tree/main/ag2-lang/"
     #define SSTR_UNPACK(str) str, strlen(str)
 
+    #define ERR_ARG_NOT_NUMBER "Argument is not a number."
+    #define ERR_ARG_OVERFLOW "Argument is too big (> int16)."
+    #define ERR_ARG_TYPE "Argument does not have the correct typing."
+
     #define SUCCESS 0
     #define FAILURE 1
 
@@ -44,6 +48,9 @@ typedef struct instruction_s {
 
 /*   EXECUTION   */
 int execute(char *filename);
+
+/*   UTILITIES   */
+int agperror(char *errmsg);
 
 /*   INSTRUCTIONS   */
 int cmd_load(program_t *program, uint8_t *values);

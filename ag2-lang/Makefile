@@ -1,6 +1,6 @@
 TARGET = ag2
 
-SRC = src/main.c src/execute.c src/instructions.c
+SRC = src/main.c src/execute.c src/instructions.c src/utils.c
 
 OBJ = $(SRC:.c=.o)
 
