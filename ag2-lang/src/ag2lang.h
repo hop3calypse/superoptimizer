@@ -11,6 +11,7 @@
     #define LINK_AG2_DOCS "https://github.com/hugo-hamet/superoptimizer/tree/main/ag2-lang/"
     #define SSTR_UNPACK(str) str, strlen(str)
 
+    #define ERR_CMD_UNKNOWN "Instruction does not exist."
     #define ERR_ARG_NOT_NUMBER "Argument is not a number."
     #define ERR_ARG_OVERFLOW "Argument is too big (> int16)."
     #define ERR_ARG_TYPE "Argument does not have the correct typing."
@@ -35,6 +36,7 @@ enum instructions_code {
 
 typedef struct program_s {
     FILE *fp;
+    char *line;
     uint8_t registers[REGISTERS_NB];
 } program_t;
 
@@ -43,7 +45,7 @@ typedef struct instruction_s {
     char *mnemonic;
     int (*func)(program_t *program, uint8_t *values);
     int nb_args;
-    char arg_types[MAX_ARGS_NB];
+    uint8_t arg_types[MAX_ARGS_NB];
 } instrution_t;
 
 /*   EXECUTION   */

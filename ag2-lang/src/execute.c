@@ -21,6 +21,7 @@ program_t *init_program(char *filename)
         return free(program), NULL;
     for (uint8_t i = 0; i < REGISTERS_NB; i++)
         program->registers[i] = 0;
+    program->line = NULL;
     return program;
 }
 
@@ -69,8 +70,10 @@ void parse_line(char *line, int *index, uint8_t *args)
     for (int i = 0; i < INSTRUCTIONS_NB; i++)
         if (strncmp(line, SSTR_UNPACK(INSTRUCTIONS[i].mnemonic)) == SUCCESS)
             *index = i;
-    if (*index == -1)
+    if (*index == -1) {
+        agperror(ERR_CMD_UNKNOWN);
         return;
+    }
     for (uint8_t i = 0; i < INSTRUCTIONS[*index].nb_args; i++) {
         for (; *line && *line != ' '; line++);
         line++;
@@ -83,7 +86,6 @@ void parse_line(char *line, int *index, uint8_t *args)
 
 int execute_instructions(program_t *program)
 {
-    char *line = NULL;
     size_t len = 0;
     ssize_t read;
     int instruction_index = -1;
@@ -91,15 +93,15 @@ int execute_instructions(program_t *program)
 
     if (args == NULL)
         return FAILURE;
-    while ((read = getline(&line, &len, program->fp)) != -1) {
-        parse_line(line, &instruction_index, args);
+    while ((read = getline(&program->line, &len, program->fp)) != -1) {
+        parse_line(program->line, &instruction_index, args);
         if (instruction_index == -1)
             return FAILURE;
         if (INSTRUCTIONS[instruction_index].func(program, args) == FAILURE)
             return FAILURE;
     }
-    if (line)
-        free(line);
+    if (program->line)
+        free(program->line);
     free(args);
     return SUCCESS;
 }

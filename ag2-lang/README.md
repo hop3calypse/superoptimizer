@@ -22,11 +22,13 @@ The purpose of an AG2 program is to execute each of its instructions, to then du
 >   - Dynamic argument typings
 
 ## Instructions
-* `val` - Clear value. 5 means the number 5.
+* `val` - Numerical value. 5 means the number 5.
 * `mem` - Index of one of the program's register. 5 means the 4th register (it starts at 0).
+* `str` - String value, has to be constituted of printable characters only. If spaces are needed, add simple or double quotes at the start and end of the string.
 
 | Hex value | Instruction usage | Description |
 |---:|:---|:---|
+| 0x00 | `NAME str` | Defines the name of the program: displayed at runtime. You are allowed one and only `NAME` instruction by program, and its value should not be over 128 characters long. |
 | 0x01 | `LOAD val` | Loads the immediate value into the memory location 0. |
 | 0x02 | `SWAP mem mem` | Swaps the values of the two memory locations. |
 | 0x03 | `CMEM mem` | Counts the number of memory blocks that are empty, and stocks that value at the memory location. |
@@ -39,12 +41,11 @@ The purpose of an AG2 program is to execute each of its instructions, to then du
 ## Compiler <a name="compiler"></a>
 Here is a step-by-step little guide on how to use the `ag2` compiler.
 
-* After cloning the repository, go in the `ag2-lang/` folder.
+* After cloning the repository, go in the [`ag2-lang`](./../ag2-lang/) folder.
 * Execute the `make` command.
 * You now have the `ag2` binary! Try out the `--help` flag to learn more on its usage.
 
 > *In the future...*
->   - Binary decompiling support (`-d` flag)
 >   - Compilation warnings and suggestions
 >   - More error handling
 
